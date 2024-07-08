@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}"> <!-- Підключення CSS файлу -->
+
+<h1>{{ product.name }}</h1>
+
+{% if product.images.count > 0 %}
+  <div class="slider">
+    <div class="slider-images">
+      {% for image in product.images.all %}
+        <img class="slide" src="{{ image.image.url }}" alt="{{ product.name }} Image">
+      {% endfor %}
+    </div>
+    <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+    <a class="next" onclick="moveSlide(1)">&#10095;</a>
+  </div>
+{% endif %}
+
+<p><strong>Категорія:</strong> {{ product.category }}</p>
+<p><strong>Опис:</strong><br> {{ product.description }}</p>
+<p><strong>Артикул:</strong> {{ product.article }}</p>
+<p><strong>Ціна:</strong> {{ product.price }} грн.</p>
+
+<form method="post" action="{% url 'add_to_cart' product.id %}">
+  {% csrf_token %}
+  <button type="submit">Добавити в корзину</button>
+</form>
+
+<a href="javascript:history.back()">Назад</a>
+
+<script src="{% static 'js/slider.js' %}"></script> <!-- Підключення JS файлу -->
+{% endblock %}

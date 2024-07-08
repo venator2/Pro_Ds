@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+<h2>Контакти</h2>
+<p>Зв'яжіться з нами:</p>
+<ul>
+    <li>Email: example@example.com</li>
+    <li>Телефон: +1234567890</li>
+    <li>Телефон: +1234567890</li>
+    <li>Адреса: м.Львів, вул. Стрийська, 45</li>
+    <li>Адреса: м.Львів, вул. Городоцька, 222</li>
+</ul>
+<a href="javascript:history.back()">Назад</a>
+{% endblock %}

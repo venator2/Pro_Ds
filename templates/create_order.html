@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Створення замовлення{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_order.css' %}">
+
+<div class="container">
+    <h1>Створення замовлення</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{ request.user.id }}">
+        <input type="hidden" name="cart" value="{% if request.user.has_cart %}{{ request.user.cart.id }}{% endif %}">
+        <label for="id_shipping_address">Адреса доставки:</label><br>
+        {{ form.shipping_address }}
+        <br><br>
+        <!-- Додайте поле для введення номеру телефону -->
+        <label for="id_additional_phone_number">Номер телефону:</label><br>
+        {{ form.additional_phone_number }}
+        <br><br>
+        <button type="submit">Замовити</button>
+    </form>
+</div>
+{% endblock %}

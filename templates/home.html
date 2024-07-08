@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Головна сторінка{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
+<h2>Магазин побутової техніки PRO-DS</h2>
+<ul class="categories-list">
+  {% for category in categories %}
+    <li>
+      <div class="category-item">
+        <a href="{% url 'category_detail' category.id %}">
+          <img src="{{ category.photo.url }}" alt="{{ category.name }} Photo" class="category-image">
+          <p>{{ category.name }}</p>
+        </a>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

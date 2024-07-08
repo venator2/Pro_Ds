@@ -1,0 +1,89 @@
+/* Додаткові стилі для зображень у слайдері */
+.slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Забезпечуємо, щоб зображення вписувалося в область слайдера */
+}
+
+.prev,
+.next {
+    /* Додаткові стилі для кнопок перемикання слайдів */
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Additional styles for the product template */
+.slider {
+    position: relative;
+    max-width: 400px; /* Змініть ширину на потрібну */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider-images {
+    display: flex;
+    justify-content: center; /* Вирівнюємо зображення по центру */
+}
+
+.slide {
+    flex: 0 0 auto;
+    max-width: 100%;
+    display: none;
+    justify-content: center; /* Вирівнюємо зображення по центру */
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Додаткові стилі для тексту товару */
+.product-info {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.product-info p {
+    margin-bottom: 10px;
+}
+
+.product-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.product-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.product-info a:hover {
+    text-decoration: underline;
+}
