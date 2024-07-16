@@ -18,6 +18,7 @@
     source venv/bin/activate  # Для Windows використовуйте `venv\Scripts\activate`
     ```
 
+
 3. Встановіть залежності:
     ```sh
     pip install -r requirements.txt
