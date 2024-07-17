@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Ensure system libraries are installed
+sudo apt-get update
+sudo apt-get install -y libsqlite3-dev python3-dev
+
 # Ensure pip is installed
 python3 -m ensurepip --upgrade
 
