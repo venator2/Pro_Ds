@@ -1,4 +1,4 @@
-#!/home/venator/Django_pg/web/Web_Pro_Ds/my_store/venv/bin/python3
+#!/home/venator2/PycharmProjects/pythonProject/Pro_Ds/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
