@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-!ker%6ek(k9_gf#t3xx3z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['venator3.mysql.pythonanywhere-services.com']
+ALLOWED_HOSTS = ['vanator3.pythonanywhere.com']
 
 # Application definition
 
