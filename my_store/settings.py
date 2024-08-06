@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-!ker%6ek(k9_gf#t3xx3zcn3-gq0c4lh=ok4(x8^*cmg^x5#n-')
+SECRET_KEY = 'django-insecure-!ker%6ek(k9_gf#t3xx3zcn3-gq0c4lh=ok4(x8^*cmg^x5#n-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = ['vanator3.pythonanywhere.com']
+ALLOWED_HOSTS = ['venator3.pythonanywhere.com', 'www.venator3.pythonanywhere.com']
 
 # Application definition
 
@@ -78,11 +78,8 @@ WSGI_APPLICATION = 'my_store.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'venator3$default',
-        'USER': 'venator3',
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'venator3.mysql.pythonanywhere-services.com',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
