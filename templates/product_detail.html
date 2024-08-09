@@ -21,7 +21,7 @@
 {% endif %}
 
 <p><strong>Категорія:</strong> {{ product.category }}</p>
-<p><strong>Опис:</strong><br> {{ product.description }}</p>
+<p><strong>Опис:</strong><br> {{ product.description|linebreaks }}</p>
 <p><strong>Артикул:</strong> {{ product.article }}</p>
 <p><strong>Ціна:</strong> {{ product.price }} грн.</p>
 
