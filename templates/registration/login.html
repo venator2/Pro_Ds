@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Login - PRO-DS{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Увійти</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {% if form.username.errors %}
+                <span class="text-danger">{{ form.username.errors }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+                <span class="text-danger">{{ form.first_name.errors }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+                <span class="text-danger">{{ form.last_name.errors }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+                <span class="text-danger">{{ form.phone_number.errors }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {% if form.email.errors %}
+                <span class="text-danger">{{ form.email.errors }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {% if form.password.errors %}
+                <span class="text-danger">{{ form.password.errors }}</span>
+            {% endif %}
+        </div>
+        <button type="submit">Увійти</button>
+    </form>
+</div>
+{% endblock %}

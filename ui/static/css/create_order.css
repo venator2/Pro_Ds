@@ -1,0 +1,53 @@
+/* Додаткові стилі для введення адреси і номеру телефону */
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Зробити мітку жирною */
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none; /* Приховати контур фокусування */
+    border-color: #4CAF50; /* Змінити колір рамки при фокусі */
+}
+
+input[type="tel"] {
+    width: calc(100% - 100px); /* Зменшити ширину поля для вводу номеру телефону */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Стилі для кнопки "Замовити" */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}

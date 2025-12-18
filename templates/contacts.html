@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+<h2>Контакти</h2>
+<ul>
+    <p>Графік роботи</p>
+    <li>Пн - Пт: 9.00 по 19.00</li>
+    <li>Сб: 9.00 по 19.00</li>
+    <li>Нд: 9.00 по 19.00</li>
+</ul>
+<ul>
+    <p>Зв'яжіться з нами:</p>
+    <li>Телефон: +380989902010</li>
+    <li>Телефон: +380739902010</li>
+    <li>Телефон: +380937411777</li>
+
+    <li>Адреса: м.Львів, вул. Стрийська 45</li>
+</ul>
+<a href="javascript:history.back()">Назад</a>
+{% endblock %}

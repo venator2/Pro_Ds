@@ -1,0 +1,28 @@
+<!-- Оновлений шаблон cart.html -->
+{% extends 'base.html' %}
+
+{% block title %}Корзина покупок{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>Корзина</h2>
+    {% if cart_items %}
+        <ul>
+            {% for item in cart_items %}
+                <li>
+                    {{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }}
+                    <a href="{% url 'remove_from_cart' item.id %}">Видалити</a> <!-- Посилання на видалення товару -->
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Загальна ціна: {{ total }}</p>
+        <form method="post" action="{% url 'create_order' %}">
+            {% csrf_token %}
+            <button type="submit">Створити замовлення</button>
+        </form>
+    {% else %}
+        <p>Твоя корзина пуста.</p>
+    {% endif %}
+    <a href="javascript:history.back()">Назад</a>
+</div>
+{% endblock %}
