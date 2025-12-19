@@ -27,13 +27,9 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'pro-ds.onrender.com',
-    'www.pro-ds.com.ua',
-    'pro-ds.com.ua',
-]
+ALLOWED_HOSTS = ['*']
 
 
 
