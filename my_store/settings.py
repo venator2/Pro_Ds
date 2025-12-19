@@ -30,9 +30,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'pro-ds.com.ua',
+    'pro-ds.onrender.com',
     'www.pro-ds.com.ua',
-    '.onrender.com'
+    'pro-ds.com.ua',
 ]
 
 
