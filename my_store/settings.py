@@ -83,7 +83,17 @@ WSGI_APPLICATION = 'my_store.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
+# Налаштування бази даних
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+# Якщо є змінна DATABASE_URL (на Render у продакшені), перезаписуємо на PostgreSQL
+if config('DATABASE_URL', default=None):
+    DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
