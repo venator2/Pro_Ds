@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!ker%6ek(k9_gf#t3xx3zcn3-gq0c4lh=ok4(x8^*cmg^x5#n-'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -32,9 +32,9 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'pro-ds.com.ua',
     'www.pro-ds.com.ua',
-    '127.0.0.1',
-    'localhost',
+    '.onrender.com'
 ]
+
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,6 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "ui/staticfiles")
 # Список директорій, в яких Django шукатиме статичні файли під час розробки.
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "ui/static")]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = ''
 
