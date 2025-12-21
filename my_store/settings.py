@@ -1,43 +1,25 @@
-"""
-Django settings for my_store project.
-"""
-
 import os
 from decouple import config
 import dj_database_url
 from pathlib import Path
 
-# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET KEY
 SECRET_KEY = config('SECRET_KEY')
 
-# DEBUG
 DEBUG = False
 
-# ALLOWED HOSTS
-ALLOWED_HOSTS = [
-    'pro-ds-2.onrender.com',
-    'pro-ds.onrender.com',
-    'pro-ds.com.ua',
-    'www.pro-ds.com.ua',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['*']
 
-# CSRF
 CSRF_TRUSTED_ORIGINS = [
     'https://pro-ds-2.onrender.com',
     'https://pro-ds.com.ua',
     'https://www.pro-ds.com.ua',
 ]
 
-# Для Render проксі
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
-# Applications
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,10 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'my_shop',
-    'crispy_forms',               # для django-crispy-forms
+    'crispy_forms',
 ]
 
-# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -63,7 +44,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_store.urls'
 
-# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -82,7 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_store.wsgi.application'
 
-# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -90,11 +69,9 @@ DATABASES = {
     }
 }
 
-# PostgreSQL на Render
 if config('DATABASE_URL', default=None):
     DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -102,22 +79,18 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'uk-ua'
 TIME_ZONE = 'Europe/Kyiv'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'ui/staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ui/static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
