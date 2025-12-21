@@ -30,16 +30,21 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'pro-ds-2.onrender.com',
+    'pro-ds-2.onrender.com',      # твій поточний субдомен Render
+    'pro-ds.onrender.com',        # на всяк випадок
     'pro-ds.com.ua',
     'www.pro-ds.com.ua',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://pro-ds-2.onrender.com',
     'https://pro-ds.com.ua',
     'https://www.pro-ds.com.ua',
-    'https://pro-ds-2.onrender.com',
 ]
+
+# Додатково (дуже бажано для Render)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 
 # Application definition
