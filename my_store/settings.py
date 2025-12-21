@@ -7,9 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'pro-ds-2.onrender.com',
+    'pro-ds.com.ua',
+    'www.pro-ds.com.ua',
+]
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://pro-ds-2.onrender.com',
