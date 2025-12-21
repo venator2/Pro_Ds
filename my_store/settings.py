@@ -2,20 +2,21 @@
 Django settings for my_store project.
 """
 
-from pathlib import Path
 import os
-import dj_database_url
 from decouple import config
+import dj_database_url
+from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET KEY
 SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG
 DEBUG = False
 
+# ALLOWED HOSTS
 ALLOWED_HOSTS = [
     'pro-ds-2.onrender.com',
     'pro-ds.onrender.com',
@@ -25,17 +26,18 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+# CSRF
 CSRF_TRUSTED_ORIGINS = [
     'https://pro-ds-2.onrender.com',
     'https://pro-ds.com.ua',
     'https://www.pro-ds.com.ua',
 ]
 
-# Для Render
+# Для Render проксі
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
-# Application definition
+# Applications
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,9 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'my_shop',
-    'crispy_forms',
+    'crispy_forms',               # для django-crispy-forms
 ]
 
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -60,6 +63,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_store.urls'
 
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -86,6 +90,7 @@ DATABASES = {
     }
 }
 
+# PostgreSQL на Render
 if config('DATABASE_URL', default=None):
     DATABASES['default'] = dj_database_url.config(default=config('DATABASE_URL'))
 
@@ -99,9 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'uk-ua'
-
-TIME_ZONE = 'Europe/Kiev'
-
+TIME_ZONE = 'Europe/Kyiv'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -110,11 +113,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'ui/staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ui/static')]
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
