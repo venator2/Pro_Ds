@@ -30,10 +30,17 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'pro-ds.onrender.com',
+    'pro-ds-2.onrender.com',
     'pro-ds.com.ua',
     'www.pro-ds.com.ua',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://pro-ds.com.ua',
+    'https://www.pro-ds.com.ua',
+    'https://pro-ds-2.onrender.com',
+]
+
 
 # Application definition
 
