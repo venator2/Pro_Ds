@@ -10,25 +10,22 @@ admin.site.unregister(Group)
 
 
 # ================================
-#     USER ADMIN (без інлайну!)
+#     USER ADMIN
 # ================================
 
-# Прибираємо стандартне відображення User
 admin.site.unregister(User)
 
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    inlines = []  # 🔥 ІНЛАЙН UserProfile ПОВНІСТЮ ВИМКНЕНО
+    inlines = []  # 🔥 ІНЛАЙН UserProfile ВИМКНЕНО
 
-    # Показуємо тільки потрібні поля
     fieldsets = (
         ('Основна інформація', {
             'fields': ('username', 'first_name', 'last_name', 'email'),
         }),
     )
 
-    # Ховаємо зайве
     exclude = (
         'password',
         'is_staff',
@@ -45,19 +42,24 @@ class CustomUserAdmin(UserAdmin):
 
 
 # ================================
-#          CATEGORY ADMIN
+#      CATEGORY ADMIN
 # ================================
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'image_tag')
     search_fields = ('name',)
-    verbose_name = "Категорія"
-    verbose_name_plural = "Категорії"
+
+    def image_tag(self, obj):
+        if obj.photo:
+            url = obj.photo.url.replace('upload/', 'upload/w_100,f_auto,q_auto/')
+            return mark_safe(f'<img src="{url}" />')
+        return ""
+    image_tag.short_description = 'Фото'
 
 
 # ================================
-#          PRODUCT ADMIN
+#      PRODUCT ADMIN
 # ================================
 
 class ProductImageInline(admin.StackedInline):
@@ -65,20 +67,34 @@ class ProductImageInline(admin.StackedInline):
     extra = 2
     verbose_name = "Фото товару"
     verbose_name_plural = "Фотографії товару"
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            url = obj.image.url.replace('upload/', 'upload/w_150,f_auto,q_auto/')
+            return mark_safe(f'<img src="{url}" />')
+        return ""
+    image_tag.short_description = "Прев’ю"
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
-    list_display = ('name', 'price', 'article', 'category')
+    list_display = ('name', 'price', 'article', 'category', 'image_preview')
     list_filter = ('category',)
     search_fields = ('name', 'article')
-    verbose_name = "Товар"
-    verbose_name_plural = "Товари"
+
+    def image_preview(self, obj):
+        first_image = obj.images.first()
+        if first_image:
+            url = first_image.image.url.replace('upload/', 'upload/w_100,f_auto,q_auto/')
+            return mark_safe(f'<img src="{url}" />')
+        return ""
+    image_preview.short_description = "Фото"
 
 
 # ================================
-#           ORDER ADMIN
+#      ORDER ADMIN
 # ================================
 
 @admin.register(Order)
@@ -120,6 +136,10 @@ class OrderAdmin(admin.ModelAdmin):
 
         html = ""
         for p in products:
+            image = p.images.first()
+            if image:
+                url = image.image.url.replace('upload/', 'upload/w_50,f_auto,q_auto/')
+                html += f'<img src="{url}" style="margin-right:5px;" />'
             html += f"<b>Назва:</b> {p.name} — <b>Артикул:</b> {p.article}<br>"
 
         return mark_safe(html)
@@ -149,4 +169,3 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.site_header = "Адміністративна панель магазину"
 admin.site.site_title = "Керування магазином"
 admin.site.index_title = "Головна сторінка адміністратора"
-
